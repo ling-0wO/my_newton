@@ -43,6 +43,9 @@ class JointType(IntEnum):
     D6 = 6
     """6-DoF joint: Generic joint with up to 3 translational and 3 rotational degrees of freedom."""
 
+    CABLE = 7
+    """Cable joint: one linear (stretch) and one angular (isotropic bend/twist) DoF."""
+
 
 def get_joint_dof_count(joint_type: int, num_axes: int) -> tuple[int, int]:
     """
@@ -78,23 +81,6 @@ def get_joint_dof_count(joint_type: int, num_axes: int) -> tuple[int, int]:
     return dof_count, coord_count
 
 
-class JointMode(IntEnum):
-    """
-    Specifies the control mode for a joint's actuation.
-
-    Joint modes determine how a joint is actuated or controlled during simulation.
-    """
-
-    NONE = 0
-    """No implicit control is applied to the joint, but the joint can be controlled by applying forces."""
-
-    TARGET_POSITION = 1
-    """The joint is controlled to reach a target position."""
-
-    TARGET_VELOCITY = 2
-    """The joint is controlled to reach a target velocity."""
-
-
 # (temporary) equality constraint types
 class EqType(IntEnum):
     """
@@ -114,9 +100,20 @@ class EqType(IntEnum):
     """Constrains the position or angle of one joint to be a quartic polynomial of another joint (like a prismatic or revolute joint)."""
 
 
+# Sentinel value for unlimited joint limits
+JOINT_LIMIT_UNLIMITED = 1e10
+"""
+Sentinel value indicating an unlimited joint limit.
+
+When used for joint_limit_upper, it means the joint has no upper limit.
+When used for joint_limit_lower (as -JOINT_LIMIT_UNLIMITED), it means the joint has no lower limit.
+A joint is considered fully unlimited only when both limits are set to these sentinel values.
+"""
+
+
 __all__ = [
+    "JOINT_LIMIT_UNLIMITED",
     "EqType",
-    "JointMode",
     "JointType",
     "get_joint_dof_count",
 ]

@@ -41,6 +41,12 @@ class ShapeFlags(IntEnum):
     COLLIDE_PARTICLES = 1 << 2
     """Indicates that the shape collides with particles."""
 
+    SITE = 1 << 3
+    """Indicates that the shape is a site (non-colliding reference point)."""
+
+    HYDROELASTIC = 1 << 4
+    """Indicates that the shape uses hydroelastic collision."""
+
 
 __all__ = [
     "ParticleFlags",
