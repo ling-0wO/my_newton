@@ -77,9 +77,9 @@ class Example:
         Example.emit_particles(builder, options)
 
         self.rigid_bodies_config = [
-            {'pos': (-0.8,-0.8, 2.0), 'mass': 200.0, 'size': (0.5, 0.5, 0.5)},
+            {'pos': (-0.4,-0.4, 2.0), 'mass': 200.0, 'size': (0.5, 0.5, 0.5)},
             {'pos': (0.4, 0.4, 2.5), 'mass': 22.5, 'size': (0.35, 0.35, 0.35)},
-            {'pos': (0.8, 0.6, 3.0), 'mass': 1.0, 'size': (0.2, 0.2, 0.2)}
+            {'pos': (0, 0, 3.0), 'mass': 1.0, 'size': (0.2, 0.2, 0.2)}
         ]
 
         num_bodies = len(self.rigid_bodies_config)

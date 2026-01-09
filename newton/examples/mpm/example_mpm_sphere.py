@@ -236,7 +236,6 @@ class Example:
     def render_ui(self, imgui):
         _changed, self.show_normals = imgui.checkbox("Show Normals", self.show_normals)
 
-    # --- 严格保留原始 granular 的粒子生成逻辑 ---
     @staticmethod
     def emit_particles(builder: newton.ModelBuilder, args):
         density = args.density
@@ -275,10 +274,8 @@ class Example:
 if __name__ == "__main__":
     parser = newton.examples.create_parser()
 
-    # --- 添加新参数：形状选择 ---
     parser.add_argument("--body-shape", default="sphere", choices=["box", "sphere"], help="Shape of the rigid bodies")
 
-    # --- 保留所有 granular 的参数设置 ---
     parser.add_argument("--collider", default="cube", choices=["cube", "wedge", "concave", "none"], type=str)
     parser.add_argument("--emit-lo", type=float, nargs=3, default=[-1, -1, 2.0])
     parser.add_argument("--emit-hi", type=float, nargs=3, default=[1, 1, 3.5])
